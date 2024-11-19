@@ -54,14 +54,26 @@ export default {
   },
 
   created() {
-    this.profileService.getAll()
+
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+      console.error('No userId found in localStorage');
+      return;
+    }
+
+    this.profileService.getByUserId(userId)
         .then(response => {
-          this.localInventory = response.data.map(item => new Product(item));
-          const profileSaved = JSON.parse(localStorage.getItem("profile")) || {};
+          this.localInventory = response.data.map(
+              item => new Product(item));
+
+          const profileSaved = JSON.parse(
+              localStorage.getItem("profile")) || {};
+
           this._emitProfileLoaded(profileSaved);
         })
         .catch(error => {
-          console.error("Error fetching products:", error);
+          console.error("Error fetching products by user:", error);
         });
   }
 }
