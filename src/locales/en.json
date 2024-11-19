@@ -1,3 +1,11 @@
 {
-
+  "Authentication": "Welcome, ",
+  "Log-Out" :"Sign Out",
+ "home": {
+    "routerlink": "Select your service",
+    "inventory": "Inventory",
+    "invoicing": "Invoices",
+    "monitoring": "Equipment Monitoring",
+   "ordering" : "Ordering Machinery"
+ }
 }

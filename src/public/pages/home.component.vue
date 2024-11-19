@@ -50,7 +50,7 @@ export default {
 
     <div class="container home pb-6 pt-5 px-4">
 
-      <h2 class="home__title title mb-5">Select your service</h2>
+      <h2 class="home__title title mb-5">{{ $t('home.routerlink') }}</h2>
 
       <div class="home__features features">
 
@@ -59,7 +59,7 @@ export default {
             <template #content>
               <div class="feature__content">
                 <img src="../../assets/images/inventory.svg" alt="inventory-icon" class="feature__icon"/>
-                <span>Inventory</span>
+                <span>{{ $t('home.inventory') }}</span>
               </div>
             </template>
           </pv-card>
@@ -70,7 +70,7 @@ export default {
             <template #content>
               <div class="feature__content">
                 <img src="../../assets/images/invoicing.svg" alt="invoicing-icon" class="feature__icon"/>
-                <span>Invoicing</span>
+                <span>{{ $t('home.invoicing') }}</span>
               </div>
             </template>
           </pv-card>
@@ -81,7 +81,7 @@ export default {
             <template #content>
               <div class="feature__content">
                 <img src="../../assets/images/monitoring.svg" alt="monitoring-icon" class="feature__icon"/>
-                <span>Equipment Monitoring</span>
+                <span>{{ $t('home.monitoring') }}</span>
               </div>
             </template>
           </pv-card>
@@ -92,7 +92,7 @@ export default {
             <template #content>
               <div class="feature__content">
                 <img src="../../assets/images/machinery.svg" alt="machinery-icon" class="feature__icon"/>
-                <span>Ordering Machine</span>
+                <span>{{ $t('home.ordering') }}</span>
               </div>
             </template>
           </pv-card>

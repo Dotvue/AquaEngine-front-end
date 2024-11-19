@@ -43,8 +43,8 @@ export default {
 <template>
   <div>
     <div class="header" v-if="isSignedIn">
-      <h2 class="username">Welcome, {{ currentFullName }}</h2>
-      <pv-button class="sign-out__button" text @click="onSignOut">Sign Out</pv-button>
+      <h2 class="username">{{ $t('Authentication') }} {{ currentFullName }}</h2>
+      <pv-button class="sign-out__button" text @click="onSignOut">{{ $t('Log-Out') }}</pv-button>
     </div>
   </div>
 </template>

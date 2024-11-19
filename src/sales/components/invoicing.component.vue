@@ -108,8 +108,8 @@ export default {
       <div class="p-col-12">
         <DataTable :value="invoices" :paginator="true" :rows="5" responsiveLayout="scroll" class="p-datatable-sm">
           <Column field="id" header="ID"></Column>
-          <Column field="customerName" header="Client"></Column>
-          <Column field="productName" header="Product"></Column>
+          <Column field="client" header="Client"></Column>
+          <Column field="product" header="Product"></Column>
           <Column field="quantity" header="Quantity"></Column>
           <Column field="price" header="Price">
             <template #body="slotProps">

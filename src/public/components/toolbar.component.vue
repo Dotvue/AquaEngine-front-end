@@ -1,9 +1,10 @@
 <script>
 import AuthenticationSection from "../../iam/components/authentication-section.component.vue";
+import LanguageSwitcher from "./language-switcher.component.vue";
 
 export default {
   name: "toolbar-content",
-  components: { AuthenticationSection },
+  components: {LanguageSwitcher, AuthenticationSection },
 
   props: {
     profile: {
@@ -28,9 +29,15 @@ export default {
           </router-link>
         </div>
       </template>
+      <template #center>  <authentication-section :profile="profile"/>
+
+      </template>
+
 
       <template #end>
-        <authentication-section :profile="profile"/>
+
+        <language-switcher/>
+
       </template>
 
     </pv-toolbar>
