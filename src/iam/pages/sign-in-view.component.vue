@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-<sign-in></sign-in>
+  <sign-in></sign-in>
 </template>
 
 <style scoped>

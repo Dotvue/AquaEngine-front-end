@@ -1,6 +1,6 @@
 import http from '../../shared/http-common.js';
 
-export class ProfileService {
+export class ProductService {
     _resourceEndpoint = '/products';
 
     getAll() {

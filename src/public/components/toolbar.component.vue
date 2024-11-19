@@ -3,15 +3,19 @@ import AuthenticationSection from "../../iam/components/authentication-section.c
 
 export default {
   name: "toolbar-content",
-  components: {AuthenticationSection},
+  components: { AuthenticationSection },
 
   props: {
     profile: {
-      type: {},
-      required: true
-    }
-  }
-}
+      type: Object,
+      required: true,
+    },
+    userId: {
+      type: String,
+      required: true,
+    },
+  },
+};
 </script>
 
 <template>
@@ -26,7 +30,7 @@ export default {
       </template>
 
       <template #end>
-        <authentication-section></authentication-section>
+        <authentication-section :profile="profile"/>
       </template>
 
     </pv-toolbar>

@@ -2,7 +2,7 @@
 import InventoryManagementComponent from "../components/inventory-management.component.vue";
 import InventoryItemPopUpComponent from "../components/inventory-item-pop-up.component.vue";
 import InventoryFormPopUpComponent from "../components/inventory-form-pop-up.vue";
-import { ProfileService } from '../services/profile.service.js';
+import { ProductService } from '../services/product.service.js';
 import Product from '../models/product.entity.js';
 
 export default {
@@ -20,7 +20,7 @@ export default {
       selectedProduct: null,
       isPopUpVisible: false,
       isPopUpFormVisible: false,
-      profileService: new ProfileService()
+      profileService: new ProductService()
     }
   },
 

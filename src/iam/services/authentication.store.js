@@ -11,7 +11,16 @@ const authenticationService = new AuthenticationService();
  */
 export const useAuthenticationStore = defineStore({
     id: 'authentication',
-    state: () => ({ signedIn: false, userId: 0, username: ''}),
+    state: () => ({
+        // The signed in flag
+        signedIn: !!localStorage.getItem('token'),
+        // The token
+        token: localStorage.getItem('token') || '',
+        // The user id
+        userId: localStorage.getItem('userId') || 0,
+        // The username
+        username: localStorage.getItem('username') || '',
+    }),
     getters: {
         /**
          * Is signed in
@@ -35,7 +44,7 @@ export const useAuthenticationStore = defineStore({
          * Current token
          * @returns {string} - The current token
          */
-        currentToken: () => localStorage.getItem('token')
+        currentToken: (state) =>  state['token'] || localStorage.getItem('token')
     },
     actions: {
         /**
@@ -46,13 +55,20 @@ export const useAuthenticationStore = defineStore({
          * @param router - The router
          */
         async signIn(signInRequest, router) {
+
             authenticationService.signIn(signInRequest)
                 .then(response => {
-                    let signInResponse = new SignInResponse(response.data.id, response.data.username, response.data.token);
+                    let signInResponse = new SignInResponse(
+                        response.data.id, response.data.username, response.data.token);
+
                     this.signedIn = true;
                     this.userId = signInResponse.id;
+                    this.token = signInResponse.token;
                     this.username = signInResponse.username;
+
                     localStorage.setItem('token', signInResponse.token);
+                    localStorage.setItem('userId', signInResponse.id.toString());
+
                     console.log(signInResponse);
                     router.push({name: 'home'});
                 })
@@ -89,9 +105,14 @@ export const useAuthenticationStore = defineStore({
          */
         async signOut(router) {
             this.signedIn = false;
+
             this.userId = 0;
             this.username = '';
+            this.token = '';
+
             localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+
             router.push({name: 'sign-in'});
         }
     }

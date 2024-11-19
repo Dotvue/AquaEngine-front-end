@@ -16,7 +16,7 @@ const http = axios.create({
 http.defaults.headers.common["Content-Type"] = "application/json";
 http.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 
-// Add a request interceptor
+//add a request interceptor
 http.interceptors.request.use(authenticationInterceptor);
 
 export default http;

@@ -4,6 +4,14 @@ import {useAuthenticationStore} from "../services/authentication.store.js";
 
 export default {
   name: "authentication-section",
+
+  props: {
+    profile: {
+      type: Object,
+      required: false
+    }
+  },
+
   data() {
     return {
       router: useRouter(),
@@ -14,8 +22,8 @@ export default {
     isSignedIn() {
       return this.authenticationStore.isSignedIn;
     },
-    currentUsername() {
-      return this.authenticationStore.currentUsername;
+    currentFullName() {
+      return this.profile?.fullName || 'Guest';
     }
   },
   methods: {
@@ -35,20 +43,22 @@ export default {
 <template>
   <div>
     <div class="header" v-if="isSignedIn">
-      <h2 class="username"> Welcome, {{ currentUsername }}</h2>
+      <h2 class="username">Welcome, {{ currentFullName }}</h2>
       <pv-button class="sign-out__button" text @click="onSignOut">Sign Out</pv-button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.username{
+.username {
   font-size: 30px;
 }
-.header{
+
+.header {
   display: flex;
   flex-direction: row;
 }
+
 .sign-out__button {
   margin-left: 50px;
   font-size: 20px;

@@ -1,58 +1,49 @@
 <script>
-import { ProfileService } from "../../control/services/profile.service.js";
-import Profile from "../../control/models/profile.entity.js";
+import ProfileService from "../../profile/services/profile.service.js";
 
 export default {
   name: "home-view",
 
   data() {
     return {
-      profileService: null,
-      profile: new Profile({}),
-    }
+      profileService: new ProfileService(),
+      profile: {},
+    };
   },
 
-  //#region Methods
   methods: {
-    emitProfileSelected(profile) {
-      this.$emit('profile-selected', profile);
-    },
-
-    _buildProfileFromResponse(response) {
-      return new Profile({
-        id: response.id,
-        name: response.name,
-        email: response.email,
-        ruc: response.ruc,
-        inventory: response.inventory
-      });
-    },
-
     _getProfileById(id) {
-      this.profileService.getById(id)
+      this.profileService.getProfileByUserId(id)
           .then(response => {
-            this.profile = this._buildProfileFromResponse(response.data);
-            this.emitProfileSelected(this.profile);
-
-            localStorage.setItem('profile', JSON.stringify(this.profile));
+            if (response.data) {
+              this.profile = response.data;
+            } else {
+              console.error('No profile data found');
+            }
           })
           .catch(error => {
-            console.error(error);
+            console.error('Error fetching profile:', error.message);
           });
     },
 
-
+    _getUserIdFromLocalStorage() {
+      const userId = localStorage.getItem('userId');
+      return userId ?? null;
+    }
   },
-  //#endregion
 
-  //#region Lifecycle Hooks
   created() {
-    this.profileService = new ProfileService();
-    this._getProfileById(2);
+    const userId = this._getUserIdFromLocalStorage();
+
+    if (userId) {
+      this._getProfileById(userId);
+    } else {
+      console.error('User is not authenticated or userId is missing');
+    }
   }
-  //#endregion
 }
 </script>
+
 
 <template>
   <section class="w-full mt-6 sm:mt-4 xl:-mt-4">
@@ -112,11 +103,7 @@ export default {
     </div>
   </section>
 
-
-
 </template>
-
-
 
 <style scoped>
 .features {
