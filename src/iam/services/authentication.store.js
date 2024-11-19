@@ -112,6 +112,7 @@ export const useAuthenticationStore = defineStore({
 
             localStorage.removeItem('token');
             localStorage.removeItem('userId');
+            localStorage.removeItem('profile');
 
             router.push({name: 'sign-in'});
         }
