@@ -58,7 +58,7 @@ export default {
     <template #header>
       <!-- Add header content if needed -->
     </template>
-    <h1 class="font-bold" style="font-size: 30px">New Monitored Machine</h1>
+    <h1 class="font-bold" style="font-size: 30px">New Tracking Record </h1>
     <form @submit.prevent="handleSubmit" class="flex flex-col space-y-4">
 
       <div class="p-4">
